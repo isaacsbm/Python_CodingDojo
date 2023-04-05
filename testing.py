@@ -9,4 +9,4 @@ for i in range(20):
     num_array.append(random.randint(1,100))
 
 print(num_array)
-print(num_array[random.randint(0,len(num_array))])
+print(num_array[random.randint(0,len(num_array))]) 
