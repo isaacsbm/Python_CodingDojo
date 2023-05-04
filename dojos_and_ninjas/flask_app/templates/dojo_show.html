@@ -23,11 +23,13 @@
                 </tr>
             </thead>
             <tbody>
+                {%for ninja in ninja.dojos: %}
                 <tr>
-                    <td>PLACEHOLDER - first name</td>
-                    <td>PLACEHOLDER - last name</td>
-                    <td>PLACEHOLDER - age</td>
+                    <td>{{first_name}}</td>
+                    <td>{{last_name}}</td>
+                    <td>{{age}}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
