@@ -19,9 +19,11 @@ def process():
             "id":request.form["id"],
             "fn": request.form["first_name"],
             "ln": request.form["last_name"],
-            "email": request.form["email"],
-            "ca":request.form["created_at"]
+            "email": request.form["email"]
+            # "ca":request.form["created_at"]
         }
+        User.update_user(data)
+        return redirect(url_for("read_all"))
     else:
         data = {
             "fn": request.form["first_name"],
@@ -40,15 +42,35 @@ def read_one(id):
     }
     return render_template("readone.html",user=User.get_one(data))
 
-@app.route("/edit", methods=["POST"])
-def edit():
-    User.update_user(request.form)
-    return redirect("edit.html")
+@app.route("/edit/<int:id>", methods=["GET","POST"])
+def edit(id):
+    
+    return render_template("edit.html", id=id)
+    # return redirect(url_for("edit.html"))
 
-# @app.route("/users/delete/<int:id>")
-# def delete(id):
-#     data = {
-#         "id":id
-#     }
-#     User.delete(data)
-#     return redirect(url_for("index"))
+@app.route("/delete/<int:id>")
+def delete(id):
+    User.delete_user({"id": id})
+    return redirect(url_for("read_all"))
+
+@app.route("/create", methods=["POST"])
+def creation():
+    data = {
+        "fn": request.form.get("first_name"),
+        "ln": request.form.get("last_name"),
+        "email": request.form.get("email")
+    }
+    User.create_user(data)
+    return redirect(url_for("read_all"))
+
+@app.route("/update/<int:id>", methods=["POST"])
+def updating(id):
+    data = {
+        "id": id,
+        "fn": request.form.get("first_name"),
+        "ln": request.form.get("last_name"),
+        "email": request.form.get("email")
+    }
+    User.update_user(data)
+    return redirect(url_for("read_all"))
+

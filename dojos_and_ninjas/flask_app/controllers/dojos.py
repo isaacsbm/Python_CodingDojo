@@ -1,9 +1,13 @@
 from flask import render_template,request, redirect, url_for
 from flask_app import app
+from flask_app.models.dojo import dojos
 
 @app.route("/")
 def index():
     return redirect("/ninjas")
+
+# @app.route("/ninjas/process")
+#     pass
 
 @app.route("/ninjas")
 def ninjas():

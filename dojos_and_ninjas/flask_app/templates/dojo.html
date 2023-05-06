@@ -25,9 +25,11 @@
     <div class="container">
         <header>All Dojos</header>
         <div class="box">
+            {% for dojo in dojos: %}
             <ul>
-                <li>PLACEHOLDER</li>
+                <li>{{dojo}}</li>
             </ul>
+            {% endfor %}
         </div>
     </div>
 </div>
