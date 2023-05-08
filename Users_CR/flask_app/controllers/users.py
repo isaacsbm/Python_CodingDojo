@@ -55,12 +55,15 @@ def delete(id):
 
 @app.route("/create", methods=["POST"])
 def creation():
-    data = {
-        "fn": request.form.get("first_name"),
-        "ln": request.form.get("last_name"),
-        "email": request.form.get("email")
-    }
-    User.create_user(data)
+    if not User.is_valid(request.form):
+        return redirect(url_for("index"))
+    else:
+        data = {
+            "fn": request.form.get("first_name"),
+            "ln": request.form.get("last_name"),
+            "email": request.form.get("email")
+        }
+        User.create_user(data)
     return redirect(url_for("read_all"))
 
 @app.route("/update/<int:id>", methods=["POST"])

@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <nav class="navbar">
-            <h3>PLACEHOLDER Ninjas</h3>
+            <h3>Ninjas</h3>
             <a class="btn btn-primary" href="/ninjas/dojos">Home</a>
         </nav>
         <table class="table table-striped">
@@ -20,14 +20,18 @@
                     <th scope="col" class="first_name">First Name</th>
                     <th scope="col" class="last_name">Last Name</th>
                     <th scope="col" class="age">Age</th>
+                    <th scope="col" class="actions">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                {%for ninja in ninjas: %}
                 <tr>
-                    <td>PLACEHOLDER - first name</td>
-                    <td>PLACEHOLDER - last name</td>
-                    <td>PLACEHOLDER - age</td>
+                    <td>{{ninja.first_name}}</td>
+                    <td>{{ninja.last_name}}</td>
+                    <td>{{ninja.age}}</td> 
+                    <td><a href="/ninjas/update/{{ninja.id}}">Edit</a></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

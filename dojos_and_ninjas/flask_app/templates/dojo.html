@@ -16,7 +16,7 @@
         <a class="btn btn-primary" href="/ninjas">Create Ninja</a>
     </nav>
     <div class="form">
-        <form action="/process", method="POST">
+        <form action="/ninjas/create_ninja", method="POST">
             <label for="">Name:</label>
             <input class="form-control" type="text" name="name">
             <button id="submit" type="submit" class="btn btn-primary">Create</button>
@@ -25,9 +25,9 @@
     <div class="container">
         <header>All Dojos</header>
         <div class="box">
-            {% for dojo in dojos: %}
+            {% for dojo in dojo_list: %}
             <ul>
-                <li>{{dojo}}</li>
+                <li><a href="/ninjas/show_dojo/{{dojo.id}}">{{dojo.name}}</a></li>
             </ul>
             {% endfor %}
         </div>

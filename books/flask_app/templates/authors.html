@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Show</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container">
+            <h1>Title: {{name}}</h1> <!-- Most likely not right! -->
+            <div class="box">
+                <h2>Favorited By:</h2>
+                {% for author in book_list: %} <!-- Double check and add these! -->
+                <ul>
+                    <li>{{author}}</li><!-- THIS NAME NEEDS TO BE CHANGED -->
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <h1>Add Book's Favorite</h1>
+            <label for="author">Author:</label>
+            <form action="">
+                <select class="form-select mt-3" name="author_id">
+                    {% for author in author_list %} <!-- NOT RIGHT! -->
+                    <option value="{{author.id}}">{{author.name}}</option> <!-- FIX THIS! -->
+                    {% endfor %}
+                </select>
+                <button value="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

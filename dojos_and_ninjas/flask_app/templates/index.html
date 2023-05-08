@@ -14,15 +14,13 @@
         <h3>New Ninja</h3>
         <a class="btn btn-primary" href="/ninjas/dojos">Home</a>
     </nav>
-    <form action="/process" method="POST" >
+    <form action="/ninjas/create_ninja" method="POST" >
         <div class="col-md-12">
             <label class="label" for="">Dojo</label>
-            <select class="form-select mt-3" name="" id="">
-                <option value="">Tatooine</option>
-                <option value="hot">Hoth</option>
-                <option value="nb">Naboo</option>
-                <option value="ct">Coruscant</option>
-                <option value="ma">Mandalore</option>
+            <select class="form-select mt-3" name="dojo_id">
+                {% for dojo in dojo_list %}
+                <option value="{{dojo.id}}">{{dojo.name}}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="col-md-12">
