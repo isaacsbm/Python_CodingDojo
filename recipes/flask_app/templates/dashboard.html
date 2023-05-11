@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="nav-bar">
-        <h1>Welcome {{first_name}}</h1>
+        <h1>Welcome {{user.first_name}}</h1>
         <a href="/recipe/new">+ Create</a> <!--! Not yet linked -->
         <a href="/logout">Logout</a> <!--! Not yet linked  -->
     </div>
@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{recipes.name}}</td>
                     <td>{{recipes.under_30_min}}</td>
-                    <td>{{recipes.user_name}}</td>
+                    <td>{{recipes.first_name}}</td>
                     <td><a href="/view_recipe/{{recipes.id}}">View Recipe</a> | <a href="/edit_recipe">Edit</a> <a href="/delete_recipe">Delete</a></td>
                 </tr>
                 {% endfor %}

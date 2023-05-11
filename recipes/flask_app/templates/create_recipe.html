@@ -18,6 +18,28 @@
                 <label for="">Name:</label>
                 <input type="text" name="name">
             </div>
+            <div>
+                <label for="">Description:</label>
+                <textarea name="instruction" id="instruction" cols="30" rows="10">Tell us about your recipe!</textarea>
+                <!-- <input type="text" name="description"> -->
+            </div>
+            <div>
+                <label for="">Instruction:</label>
+                <textarea name="instruction" id="instruction" cols="30" rows="10">How do you make it?</textarea>
+                <!-- <input type="text" name="instruction"> -->
+            </div>
+            <div>
+                <label for="">Under 30 Minutes?</label>
+                <label for="yes">Yes</label>
+                <input type="radio" id="yes" name="under_30_min" value="yes">
+                <label for="no">No</label>
+                <input type="radio" id="no" name="under_30_min" value="no">
+            </div>
+            <div>
+                <label for="">Created At:</label>
+                <input type="date" name="created_at">
+            </div>
+            <button value="submit">Submit!</button>
         </form>
     </div>
 </body>
