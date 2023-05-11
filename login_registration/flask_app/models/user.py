@@ -43,7 +43,6 @@ class User:
         else:
             return False
         
-    
     @staticmethod
     def is_valid(user_dict):
         is_valid = True
