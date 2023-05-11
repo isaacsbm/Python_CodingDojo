@@ -1,4 +1,4 @@
-Python Exam Prep Cheat Sheet
+Python Exam Prep Notes
     1. Create a modularized project
         a. Project Folder
             a. Flask_App
