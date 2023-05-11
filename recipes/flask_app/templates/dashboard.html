@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nav-bar">
+        <h1>Welcome {{first_name}}</h1>
+        <a href="/recipe/new">+ Create</a> <!--! Not yet linked -->
+        <a href="/logout">Logout</a> <!--! Not yet linked  -->
+    </div>
+    <div class="body">
+        <h3>All Posted Recipes:</h3>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Under</th>
+                    <th>Posted By</th>
+                    <th>Actions</th>
+                </tr>
+                <!--! Don't forget to put your jinga here!-->
+                {% for recipes in recipes: %}
+                <tr>
+                    <td>{{recipes.name}}</td>
+                    <td>{{recipes.under_30_min}}</td>
+                    <td>{{recipes.user_name}}</td>
+                    <td><a href="/view_recipe/{{recipes.id}}">View Recipe</a> | <a href="/edit_recipe">Edit</a> <a href="/delete_recipe">Delete</a></td>
+                </tr>
+                {% endfor %}
+                </table>
+        </div>
+    </div>
+</body>
+</html>

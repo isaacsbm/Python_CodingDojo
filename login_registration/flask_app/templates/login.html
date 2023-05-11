@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{ bootstrap.load_css()}}
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <div class="login-info">
+        <div class="container-fluid px-1 py-5 mx-auto">
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                    <div class="card" id="background">
+                        <h1 class="text text-center mb-4">Login!</h1>
+                        <form action="/login" method="POST" class="form-card"> <!--! This is not linked yet!  --><!--! You have not added the names for the forms from the SQL database!!  -->
+                            {% with messages = get_flashed_messages() %}
+                            <!-- declare a variable called messages -->
+                            {% if messages %}
+                            <!-- check if there are any messages -->
+                            {% for message in messages %}
+                            <!-- loop through the messages -->
+                            <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <div class="row justify-content-between text-center">
+                                <div class="form-group col-12 flex-column d-flex">
+                                    <label class="text form-control-label px-3" for="">Email Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Enter Email">
+                                </div>
+                            </div>
+                            <div class="row justify-content-between text-center">
+                                <div class="form-group col-12 flex-column d-flex">
+                                    <label class="text form-control-label px-3" for="">Password</label>
+                                    <input type="password" name="pwd" class="form-control" placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="form-group col-sm-6">
+                                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</body>
+</html>

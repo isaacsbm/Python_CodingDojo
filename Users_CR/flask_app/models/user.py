@@ -40,7 +40,6 @@ class User():
         query = "UPDATE users SET first_name=%(fn)s, last_name=%(ln)s, email=%(email)s WHERE id=%(id)s;"
         results =  connectToMySQL(cls.db).query_db(query,data)
         print("---------------------------------------")
-
         return results
     
     @classmethod

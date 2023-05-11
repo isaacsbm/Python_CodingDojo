@@ -58,7 +58,6 @@ class Ninja():
     #     data = {
     #                 "id": id,
     #             }
-    #     query = "SELECT * FROM ninjas where id=%(id)s"
+    #     query = "SELECT * FROM dojos_and_ninjas.ninjas where id=%(id)s"
     #     results = connectToMySQL(cls.db).query_db(query,data)
-    #     ninja = cls(results[0])
-    #     return ninja
+    #     return cls(results[0])

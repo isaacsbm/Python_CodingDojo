@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Change Order</h1>
+        <a href="/cookies">Back to purchases</a>
+        <div class="form">
+            <form action="/update/{{id}}" method="POST">
+                <div> 
+                    <label for="name">Name:</label> 
+                    <input type="text" name="name">
+                </div>
+                <div>
+                    <label for="cookie_type">Cookie Type:</label>
+                    <input type="text" name="cookie_type">
+                </div>
+                <div>
+                    <label for="num_of_boxes">Number of Boxes:</label>
+                    <input type="number" value="0" name="num_of_boxes">
+                </div>
+                <button value="submit">Log</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

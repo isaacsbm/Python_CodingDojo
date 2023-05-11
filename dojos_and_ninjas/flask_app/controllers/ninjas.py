@@ -14,16 +14,14 @@ def create_ninja():
     dojos = Dojo.get_all_dojos()
     return render_template("dojo.html", dojo_list=dojos)
 
-# @app.route("/ninjas/edit/<int:id>", methods=["GET","POST"])
+# @app.route("/ninjas/edit/<int:id>")
 # def edit(id):
 #     data = {
-#     "id": request.form.get("id"),
-#     "fn": request.form.get("first_name"),
-#     "ln": request.form.get("last_name"),
-#     "age": request.form.get("age")
+#     "id": request.form.get("id")
 #     }
-#     ninja_id = Ninja.get_one_by_id(id)
+#     ninja_id = Ninja.get_one_by_id(data)
 #     return render_template("edit.html", ninja=ninja_id)
+
 
 @app.route("/ninjas/update/<int:id>", methods=["POST", "GET"])
 def update(id):

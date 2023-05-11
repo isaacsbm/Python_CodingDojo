@@ -1,0 +1,90 @@
+@import url(https://allfont.net/allfont.css?fonts=star-jedi);
+
+body{color: #000;overflow-x: hidden;height: 100%;background-repeat: no-repeat;background-size: 100% 100%}
+.card{padding: 30px 40px;margin-top: 60px;margin-bottom: 60px;border: none !important;box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)}
+
+.form-control-label{margin-bottom: 0}input, textarea, button{padding: 8px 15px;border-radius: 5px !important;margin: 5px 0px;box-sizing: border-box;border: 1px solid #000000;font-size: 18px !important;font-weight: 300}input:focus, textarea:focus{-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;border: 1px solid #000000;outline-width: 0;font-weight: 400}
+
+.btn-block{font-weight: 400;height: 43px;cursor: pointer}
+
+.btn-block:hover{background-color: #EADF00; color: #020202 !important}button:focus{-moz-box-shadow: none !important;-webkit-box-shadow: none !important;box-shadow: none !important;outline-width: 0}
+
+.btn {
+    color: #EADF00;
+    background-color: #020202;
+    border: black;
+}
+
+.text {
+        /* Styling the text and giving it gradiant */
+        color:#020202;
+        background: -webkit-linear-gradient(#333, #424040);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* text-shadow: 3px 3px 0px rgba(0,0,0,0.2); */
+}
+.login-info  {
+    font-family: 'Star Jedi', arial;
+    margin-top:10em;
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+
+    /* Make sure text is infront of background images */
+    display:block;
+    position: relative;
+    z-index: 3;
+}
+.invalid-feedback{
+    color: #ff606e;
+}
+
+.valid-feedback{
+    color: #2acc80;
+}
+input {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+
+.stars, .twinkling, .clouds {
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+width:100%;
+height:100%;
+display:block;
+}
+
+.stars {
+background:#000 url(stars.png) repeat top center;
+z-index:0;
+}
+
+.twinkling{
+background:transparent url(twinkling.png) repeat top center;
+z-index:1;
+animation:move-twink-back 200s linear infinite;
+}
+
+.clouds{
+    background:transparent url(clouds.png) repeat top center;
+    z-index:2;
+    opacity: .4;
+    animation:move-clouds-back 200s linear infinite;
+}
+
+#background{
+    background: linear-gradient(to bottom right, #fffefe, #676565);
+}
