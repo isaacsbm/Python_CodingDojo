@@ -17,6 +17,7 @@ class Recipe():
     @classmethod
     def get_all_recipes(cls):
         query = "SELECT * FROM recipes JOIN users on recipes.users_id = users.id;"
+        # I started by making the query like: "SELECt recipes.id, recipes.first_name, etc. LEFT JOIN on recipes.user_id set user.first_name=user.name etc." I ended up having all sorts of issues because I was hard coding. So I went to the solution and saw this join but I wanted to walk through it a bit.
         results = connectToMySQL(cls.db).query_db(query)
         recipes = []
         for row in results:
@@ -33,7 +34,7 @@ class Recipe():
             recipe_dict.user = user.User(user_data)
             recipes.append(recipe_dict)
         return recipes
-    @classmethod # ! There has to be an easier way to write this?? What is that? Because this is messing up the rest of my code...Look at instructions I had to put it as a get not a data????
+    @classmethod # There has to be an easier way to write this?? What is that? Because this is messing up the rest of my code...Look at instructions I had to put it as a get not a data. Ask Corey. 
     def get_one_recipe(cls,data):
         query = "SELECT * FROM recipes JOIN users on recipes.user_id = users.id WHERE recipes.id=%(id)s;"
         results = connectToMySQL(cls.db).query_db(query,data)
@@ -52,7 +53,7 @@ class Recipe():
         recipe_one.user = user.User(user_data)
         return recipe_one
 
-    @classmethod
+    @classmethod #* Standard. 
     def create_recipe(cls,data):
         query = "INSERT INTO recipes (name, description, instruction, under_30_min, created_at, users_id) VALUES (%(name)s,%(des)s,%(inst)s,%(u3)s,%(ct)s, %(users_id)s)"
         results = connectToMySQL(cls.db).query_db(query, data)

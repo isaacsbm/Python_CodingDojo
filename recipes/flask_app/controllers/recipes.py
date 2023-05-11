@@ -5,7 +5,7 @@ from flask_app.models import user
 
 @app.route("/recipes")
 def show_all_recipes():
-    if "user_id" not in session:
+    if "user_id" not in session: #* Does this actually work as a check? I don't know how to test for it? I think it'll work??
         return redirect("/login_form")
     user = user.User.get_by_id({"id": int(session["logged_in"])})
     return render_template("dashboard.html", user=user, recipes=recipe.Recipe.get_all_recipes())
