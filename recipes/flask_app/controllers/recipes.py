@@ -5,10 +5,13 @@ from flask_app.models import user
 
 @app.route("/recipes")
 def show_all_recipes():
-    if "user_id" not in session:
+    user_id = session.get("logged_in")
+    if user_id:
+        users = user.User.get_by_id({"id": int(session["logged_in"])})
+        recipes=recipe.Recipe.get_all_recipes()
+        return render_template("dashboard.html", users=users, recipes=recipes)
+    else:
         return redirect("/login_form")
-    user = user.User.get_by_id({"id": int(session["logged_in"])})
-    return render_template("dashboard.html", user=user, recipes=recipe.Recipe.get_all_recipes())
 # @app.route("/recipes")
 # def show_all_recipes():
 #     user_id = session.get("logged_in")

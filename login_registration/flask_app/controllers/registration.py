@@ -45,8 +45,15 @@ def login():
     session["logged_in"] = user_from_db.id
     return redirect(url_for("dashboard"))
 
+# * Forgot to add a logout route, added!
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/login_form")
+
+# * Updated render_template to go to page!
 @app.route("/success")
 def dashboard():
     logged_in = user.User.get_by_id({"id": int(session["logged_in"])})
     print(logged_in)
-    return logged_in.fullname()
+    return render_template("dashboard.html", user=user)

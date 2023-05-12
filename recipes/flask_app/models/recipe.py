@@ -35,7 +35,7 @@ class Recipe():
         return recipes
     @classmethod # ! There has to be an easier way to write this?? What is that? Because this is messing up the rest of my code...Look at instructions I had to put it as a get not a data????
     def get_one_recipe(cls,data):
-        query = "SELECT * FROM recipes JOIN users on recipes.user_id = users.id WHERE recipes.id=%(id)s;"
+        query = "SELECT * FROM recipes JOIN users on recipes.users_id = users.id WHERE recipes.id=%(id)s;"
         results = connectToMySQL(cls.db).query_db(query,data)
         results = results[0]
         recipe_one = cls(results)
