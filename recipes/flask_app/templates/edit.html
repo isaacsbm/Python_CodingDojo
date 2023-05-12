@@ -1,4 +1,4 @@
-~<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="nav-bar">
-        <h1>Add a New Recipe!</h1>
+        <h1>Update Recipe!</h1>
         <a href="/recipes">+ Create</a> <!--! Not yet linked -->
         <a href="/logout">Logout</a> <!--! Not yet linked  -->
     </div>
     <div class="body">
-        <form action="/create_recipe" method="POST">
+        <form action="/update_recipe/{{recipes.id}}" method="POST">
             {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
             {% if messages %}                            <!-- check if there are any messages -->
                 {% for message in messages %}            <!-- loop through the messages -->
@@ -23,15 +23,17 @@
         {% endwith %}
             <div>
                 <label for="">Name:</label>
-                <input type="text" name="name">
+                <input type="text" name="name" value="{{recipes.name}}">
             </div>
             <div>
                 <label for="">Description:</label>
-                <textarea name="description" id="description" cols="30" rows="10">Tell us about your recipe!</textarea>
+                <textarea name="description" id="description" cols="30" rows="10">{{recipes.description}}</textarea>
+                <!-- <input type="text" name="description"> -->
             </div>
             <div>
                 <label for="">Instruction:</label>
-                <textarea name="instruction" id="instruction" cols="30" rows="10">How do you make it?</textarea>
+                <textarea name="instruction" id="instruction" cols="30" rows="10">{{recipes.instruction}}</textarea>
+                <!-- <input type="text" name="instruction"> -->
             </div>
             <div>
                 <label for="">Under 30 Minutes?</label>
@@ -41,8 +43,8 @@
                 <input type="radio" id="no" name="under_30_min" value="no">
             </div>
             <div>
-                <label for="">Created At:</label>
-                <input type="date" name="created_at">
+                <label for="">Updated At:</label>
+                <input type="date" name="updated_at" value="">
             </div>
             <button value="submit">Submit!</button>
         </form>

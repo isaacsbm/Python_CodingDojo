@@ -45,10 +45,10 @@ def login():
         return redirect(url_for("login_form"))
     
     session["logged_in"] = user_from_db.id
-    return redirect(url_for("dashboard"))
+    return redirect(url_for("show_all_recipes"))
 
-@app.route("/success")
-def dashboard():
-    logged_in = user.User.get_by_id({"id": int(session["logged_in"])})
-    print(logged_in)
-    return redirect("/recipes")
+@app.route("/logout")
+def logout():
+    session.clear()
+    print(session)
+    return redirect(url_for("index"))

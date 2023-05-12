@@ -23,13 +23,17 @@
                     <th>Actions</th>
                 </tr>
                 <!--! Don't forget to put your jinga here!-->
-                {% for recipes in recipes: %}
+                {% for recipes in all_recipes: %}
                 <tr>
                     <td>{{recipes.name}}</td>
                     <td>{{recipes.under_30_min}}</td>
                     <td>{{recipes.first_name}}</td>
-                    <td><a href="/view_recipe/{{recipes.id}}">View Recipe</a> | <a href="/edit_recipe">Edit</a> <a href="/delete_recipe">Delete</a></td>
+                    <td><a href="/view_recipe/{{recipes.id}}">View Recipe</a> | 
+                        {% if users.id == recipes.users_id: %}
+                        <a href="/recipes/edit/{{recipes.id}}">Edit</a> 
+                        | <a href="/delete/{{recipes.id}}">Delete</a></td>
                 </tr>
+                {% endif %}
                 {% endfor %}
                 </table>
         </div>

@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import user
+from flask import flash
 
 class Recipe():
     db = "recipes"
@@ -14,14 +15,15 @@ class Recipe():
         self.users_id = data["users_id"]
         self.user = None
 
+    #* Get all recipes with User
     @classmethod
     def get_all_recipes(cls):
         query = "SELECT * FROM recipes JOIN users on recipes.users_id = users.id;"
-        # I started by making the query like: "SELECt recipes.id, recipes.first_name, etc. LEFT JOIN on recipes.user_id set user.first_name=user.name etc." I ended up having all sorts of issues because I was hard coding. So I went to the solution and saw this join but I wanted to walk through it a bit.
         results = connectToMySQL(cls.db).query_db(query)
         recipes = []
         for row in results:
             recipe_dict = cls(row)
+            recipe_dict.first_name = row["first_name"]
             user_data = {
                 "id": row["users.id"],
                 "first_name": row["first_name"],
@@ -34,27 +36,59 @@ class Recipe():
             recipe_dict.user = user.User(user_data)
             recipes.append(recipe_dict)
         return recipes
-    @classmethod # There has to be an easier way to write this?? What is that? Because this is messing up the rest of my code...Look at instructions I had to put it as a get not a data. Ask Corey. 
-    def get_one_recipe(cls,data):
+    
+    #* Get One Recipe Tied to the User
+    @classmethod
+    def get_one_recipe(cls, data):
         query = "SELECT * FROM recipes JOIN users on recipes.users_id = users.id WHERE recipes.id=%(id)s;"
-        results = connectToMySQL(cls.db).query_db(query,data)
-        results = results[0]
-        recipe_one = cls(results)
-        for row in results:
-            user_data = {
-                "id": row["id"],
-                "first_name": row["first_name"],
-                "last_name": row["last_name"],
-                "email": row["email"],
-                "password": row["password"],
-                "created_at": row["created_at"],
-                "updated_at": row["updated_at"]
-            }
+        results = connectToMySQL(cls.db).query_db(query, data)
+        print(query)
+        row = results[0]
+        recipe_one = cls(results[0])
+        recipe_one.first_name = row["first_name"]
+        # for row in results:
+        user_data = {
+            "id": row["users.id"],
+            "first_name": row["first_name"],
+            "last_name": row["last_name"],
+            "email": row["email"],
+            "password": row["password"],
+            "created_at": row["users.created_at"],
+            "updated_at": row["users.updated_at"]
+        }
         recipe_one.user = user.User(user_data)
         return recipe_one
 
-    @classmethod #* Standard. 
+    # * Create Recipe
+    @classmethod 
     def create_recipe(cls,data):
         query = "INSERT INTO recipes (name, description, instruction, under_30_min, created_at, users_id) VALUES (%(name)s,%(des)s,%(inst)s,%(u3)s,%(ct)s, %(users_id)s)"
         results = connectToMySQL(cls.db).query_db(query, data)
         return results
+    
+    # * Update Recipe
+    @classmethod
+    def update_recipe(cls,data):
+        query = "UPDATE recipes SET name=%(name)s, description=%(des)s, instruction=%(inst)s, under_30_min=%(u3)s, updated_at=%(ua)s WHERE id=%(id)s;"
+        return connectToMySQL(cls.db).query_db(query,data)
+    
+    # * Delete Recipe
+    @classmethod
+    def delete_recipe(cls,data):
+        query = "DELETE FROM recipes WHERE id=%(id)s;"
+        yay= connectToMySQL(cls.db).query_db(query,data)
+        return yay
+    
+    @staticmethod
+    def is_valid(recipe_dicts):
+        is_valid = True
+        if len(recipe_dicts["name"]) < 3:
+            flash("Name must be longer than 3 characters")
+            is_valid=False
+        if len(recipe_dicts["description"]) < 3:
+            flash("Description must be longer than 3 characters")
+            is_valid=False
+        if len(recipe_dicts["instruction"]) < 3:
+            flash("Instructions must be longer than 3 characters")
+            is_valid=False
+        return is_valid
