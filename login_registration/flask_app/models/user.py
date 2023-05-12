@@ -26,7 +26,6 @@ class User:
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email=%(email)s;"
         results = connectToMySQL(cls.db).query_db(query, data)
-        
         if results:
             user_from_db = results[0]
             return cls(user_from_db)
@@ -40,10 +39,9 @@ class User:
         if results:
             user_from_db = results[0]
             return cls(user_from_db)
-        else:
+        else: #* This is your validation check!
             return False
         
-    
     @staticmethod
     def is_valid(user_dict):
         is_valid = True

@@ -53,7 +53,17 @@ def logout():
 
 # * Updated render_template to go to page!
 @app.route("/success")
+<<<<<<< HEAD
 def dashboard():
     logged_in = user.User.get_by_id({"id": int(session["logged_in"])})
     print(logged_in)
     return render_template("dashboard.html", user=user)
+=======
+def logged_in():
+    user_id = int(session.get("logged_in"))
+    if user_id:
+        logged_in_user = user.User.get_by_id(user_id)
+        return redirect("/dashboard", logged_in_user=logged_in_user)
+    else:
+        return redirect("/login")
+>>>>>>> 6e0f9c4c45ef8f740ad0835ec3968f4a795ef23d
