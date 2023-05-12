@@ -8,11 +8,7 @@
 </head>
 <body>
     <div class="nav-bar">
-<<<<<<< HEAD
         <h1>Welcome {{users.first_name}}</h1>
-=======
-        <h1>Welcome {{session.user.first_name}}</h1> <!--! This might not be right...double check it. -->
->>>>>>> 6e0f9c4c45ef8f740ad0835ec3968f4a795ef23d
         <a href="/recipe/new">+ Create</a> <!--! Not yet linked -->
         <a href="/logout">Logout</a> <!--! Not yet linked  -->
     </div>
@@ -31,7 +27,7 @@
                 <tr>
                     <td>{{recipes.name}}</td>
                     <td>{{recipes.under_30_min}}</td>
-                    <td>{{recipes.first_name}}</td> <!-- ! Do I need to call this by session.user? But I'm running it through my recipes?-->
+                    <td>{{recipes.first_name}}</td>
                     <td><a href="/view_recipe/{{recipes.id}}">View Recipe</a> | <a href="/edit_recipe">Edit</a> <a href="/delete_recipe">Delete</a></td>
                 </tr>
                 {% endfor %}
